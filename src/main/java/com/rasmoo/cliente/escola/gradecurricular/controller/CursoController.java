@@ -48,7 +48,6 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
-
 	@GetMapping("/{codCurso}")
 	public ResponseEntity<Response<CursoModel>> consultarCursoPorMateria(@PathVariable String codCurso) {
 		Response<CursoModel> response = new Response<>();
@@ -65,7 +64,6 @@ public class CursoController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
-	
 	
 	@DeleteMapping("/{cursoId}")
 	public ResponseEntity<Response<Boolean>> excluirCurso( @PathVariable Long cursoId) {
