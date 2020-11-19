@@ -38,9 +38,7 @@ public class CursoController {
 		response.setStatusCode(HttpStatus.CREATED.value());
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
 	}
-
 	
 	@GetMapping
 	public ResponseEntity<Response<List<CursoEntity>>> listarCurso() {
