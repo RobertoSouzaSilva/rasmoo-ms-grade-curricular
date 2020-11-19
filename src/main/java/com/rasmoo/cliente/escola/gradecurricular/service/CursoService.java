@@ -2,19 +2,20 @@ package com.rasmoo.cliente.escola.gradecurricular.service;
 
 import java.util.List;
 
-import com.rasmoo.cliente.escola.gradecurricular.dto.CursoDTO;
+import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
+import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
 
 public interface CursoService {
 	
-	public Boolean cadastrar(CursoDTO cursoDTO);
+	public Boolean cadastrar(CursoModel cursoDTO);
 	
-	public Boolean atualizar(CursoDTO cursoDTO);
+	public Boolean atualizar(CursoModel cursoDTO);
 	
-	public CursoDTO consultaPorCodigo(String codigoCurso);
+	public CursoModel consultaPorCodigo(String codigoCurso);
 	
-	public List<CursoDTO> listar();
+	public List<CursoEntity> listar();
 	
-	public CursoDTO listarPeloId(Long id);
+	public CursoModel listarPeloId(Long id);
 	
 	public Boolean excluir(Long id);
 

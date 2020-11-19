@@ -1,16 +1,18 @@
-package com.rasmoo.cliente.escola.gradecurricular.dto;
+package com.rasmoo.cliente.escola.gradecurricular.model;
 
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CursoDTO{
+public class CursoModel{
 	
 	private Long id;
 	

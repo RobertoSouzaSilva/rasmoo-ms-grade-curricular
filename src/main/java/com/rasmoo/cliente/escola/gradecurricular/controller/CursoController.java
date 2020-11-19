@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rasmoo.cliente.escola.gradecurricular.dto.CursoDTO;
+import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
+import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
 import com.rasmoo.cliente.escola.gradecurricular.model.Response;
 import com.rasmoo.cliente.escola.gradecurricular.service.impl.CursoServiceImpl;
 
@@ -28,7 +30,7 @@ public class CursoController {
 	private CursoServiceImpl cursoService;
 	
 	@PostMapping
-	public ResponseEntity<Response<Boolean>> cadastrarCurso(@Valid @RequestBody CursoDTO curso) {
+	public ResponseEntity<Response<Boolean>> cadastrarCurso(@Valid @RequestBody CursoModel curso) {
 
 		Response<Boolean> response = new Response<>();
 
@@ -41,8 +43,8 @@ public class CursoController {
 
 	
 	@GetMapping
-	public ResponseEntity<Response<List<CursoDTO>>> listarCurso() {
-		Response<List<CursoDTO>> response = new Response<>();
+	public ResponseEntity<Response<List<CursoEntity>>> listarCurso() {
+		Response<List<CursoEntity>> response = new Response<>();
 		response.setData(this.cursoService.listar());
 		response.setStatusCode(HttpStatus.OK.value());
 		return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -50,15 +52,15 @@ public class CursoController {
 
 
 	@GetMapping("/{codCurso}")
-	public ResponseEntity<Response<CursoDTO>> consultarCursoPorMateria(@PathVariable String codCurso) {
-		Response<CursoDTO> response = new Response<>();
+	public ResponseEntity<Response<CursoModel>> consultarCursoPorMateria(@PathVariable String codCurso) {
+		Response<CursoModel> response = new Response<>();
 		response.setData(cursoService.consultaPorCodigo(codCurso));
 		response.setStatusCode(HttpStatus.OK.value());
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
 	@PutMapping
-	public ResponseEntity<Response<Boolean>> atualizarCurso(@Valid @RequestBody CursoDTO curso) {
+	public ResponseEntity<Response<Boolean>> atualizarCurso(@Valid @RequestBody CursoModel curso) {
 		Response<Boolean> response = new Response<>();
 		response.setData(cursoService.atualizar(curso));
 		response.setStatusCode(HttpStatus.OK.value());
