@@ -2,8 +2,7 @@ language: java
 jdk: "-openjdk8"
 deploy:
   provider: heroku
-  api_key:
-    secure: ivazW4D8Sgsl8d63DFKDcW03d4qEv+9ZjwugpoYksDWx5OnPSgeQ3CD8nvIiRcHdrCVxCkgLl6NY1hoi/AI4LJwzc6BhF5SR5LpfKNOGlQlneyqKshN6d972IhIO+Hpu6q6Z3/PdIc7/1lmtOo6JaVxFKcTj+VED8DFfihdzgE5nG6WRsNmu1VNd+15a4ppJX/ZoMarT1N900fmtdXVeFw/eQiEtlqWUwkBG2AB4pF42B0dIpvjJbrVmKA56dNBSryDkb42S3EsVrCvqnAHLLgyJPHiXw075O7rc3sTprsjT6iR3PCzHGc1RadoW7TxnpjO9tWOhrVO5t7bQZzO1TcI6AbuvKf8Hio9mPEnGG4eCMZMd0v0dXNRP/lagVrrBgWnWHyRJL0MbagEe7spVYCEqkRXueAWY/gNi/RLmmn764AL8EJoJV4SJWPKn1hhzmFe/ju54ne9GyywmOh+NiuDt7SUhnHoKdir6i0eATd07sPQYyjmXH/abq49dhA92AtGHetCPwPrHvi+jel1hcSKRei4LJbjd7+n3c00fInKK9udRxXru80sbk26JDMWAV6CTFXRCrnhF2CHvze21ZfmT9dzocUgRG5oQXTqXmeCFH/vjLT+tNRr4zQmykHbGeHox+gcD71ClN+T+3vtAgGB7Z3sAqH5U4/3x/Hl7UcI=
+  api_key: 4fd24aa9-19e3-42d9-b202-6fa4e44dd07c
   app: grade-curricular-dev-rob
   on:
     all_branches: true
