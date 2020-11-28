@@ -14,6 +14,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.rasmoo.cliente.escola.gradecurricular.constant.MensagensContant;
 import com.rasmoo.cliente.escola.gradecurricular.controller.MateriaController;
 import com.rasmoo.cliente.escola.gradecurricular.dto.MateriaDTO;
 import com.rasmoo.cliente.escola.gradecurricular.entity.MateriaEntity;
@@ -51,7 +52,7 @@ public class MateriaServiceImpl implements MateriaService {
 		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
-			throw e;
+			throw new MateriaException(MensagensContant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -64,7 +65,7 @@ public class MateriaServiceImpl implements MateriaService {
 		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
-			throw e;
+			throw new MateriaException(MensagensContant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -96,17 +97,17 @@ public class MateriaServiceImpl implements MateriaService {
 	public MateriaDTO listarPorId(Long id) {
 
 		try {
-			Optional<MateriaEntity> materiaOptional = materiaRepository.findById(id);
+			Optional<MateriaEntity> materiaOptional = this.materiaRepository.findById(id);
 
 			if (materiaOptional.isPresent()) {
 				return this.mapper.map(materiaOptional.get(), MateriaDTO.class);
 			}
-			throw new MateriaException(MATERIA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND);
+			throw new MateriaException(MensagensContant.ERRO_MATERIA_NAO_ENCONTRADA.getValor(), HttpStatus.NOT_FOUND);
 
 		} catch (MateriaException m) {
 			throw m;
 		} catch (Exception e) {
-			throw new MateriaException(MENSAGEM_ERRO, HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new MateriaException(MensagensContant.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
@@ -114,11 +115,23 @@ public class MateriaServiceImpl implements MateriaService {
 	@Override
 	public Boolean cadastra(MateriaDTO materiaDto) {
 		try {
+			if(materiaDto.getId() != null) {
+				throw new MateriaException(MensagensContant.ERRO_ID_INFORMADO.getValor(),
+						HttpStatus.BAD_REQUEST);
+			}
+			
+			if(this.materiaRepository.findByCodigo(materiaDto.getCodigoMateria()) != null) {
+				throw new MateriaException(MensagensContant.ERRO_MATERIA_CADASTRADA_ANTERIORMENTE.getValor(), HttpStatus.BAD_REQUEST);
+			}
 			MateriaEntity materia = this.mapper.map(materiaDto, MateriaEntity.class);
-
+			
 			this.materiaRepository.save(materia);
 			return Boolean.TRUE;
+			
 
+		} catch (MateriaException m) {
+			throw m;
+	
 		} catch (Exception e) {
 			throw new MateriaException(MENSAGEM_ERRO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -128,7 +141,6 @@ public class MateriaServiceImpl implements MateriaService {
 	public List<MateriaDTO> buscaPelaHora(Integer horaMinima) {
 		try {
 			return this.mapper.map(materiaRepository.findByHoraMinima(horaMinima), new TypeToken<List<MateriaDTO>>() {}.getType());
-//			throw new MateriaException(MATERIA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND);
 
 		} catch (MateriaException m) {
 			throw m;

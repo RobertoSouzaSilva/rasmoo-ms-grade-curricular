@@ -14,5 +14,9 @@ public interface MateriaRepository extends JpaRepository<MateriaEntity, Long>{
 	
 	@Query(value = "select * from Materia where horas >= :horaMinima", nativeQuery = true)
 	public List<MateriaEntity> findByHoraMinima(@Param("horaMinima")int horaMinima);
+
+
+	@Query(value = "select * from Materia where codigo_materia = :codigoMateria", nativeQuery = true)
+	public MateriaEntity findByCodigo(@Param("codigoMateria")String codigoMateria);
 	
 }
