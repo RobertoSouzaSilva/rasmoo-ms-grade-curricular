@@ -16,18 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rasmoo.cliente.escola.gradecurricular.dto.CursoDTO;
 import com.rasmoo.cliente.escola.gradecurricular.entity.CursoEntity;
 import com.rasmoo.cliente.escola.gradecurricular.model.CursoModel;
 import com.rasmoo.cliente.escola.gradecurricular.model.Response;
-import com.rasmoo.cliente.escola.gradecurricular.service.impl.CursoServiceImpl;
+import com.rasmoo.cliente.escola.gradecurricular.service.CursoService;
 
 @RestController
 @RequestMapping("/curso")
 public class CursoController {
 	
 	@Autowired
-	private CursoServiceImpl cursoService;
+	private CursoService cursoService;
 	
 	@PostMapping
 	public ResponseEntity<Response<Boolean>> cadastrarCurso(@Valid @RequestBody CursoModel curso) {
